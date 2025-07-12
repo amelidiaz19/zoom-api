@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: zoom
+    ports:
+      - 3300:3300
+    env_file:
+      - .env
+    restart: always
