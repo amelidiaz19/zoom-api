@@ -68,7 +68,6 @@ export class SalaController {
     @Res() res: Response
   ) {
     try {
-      // Obtener reporte desde R2
       const contenido = await this.salaService.obtenerReporteDesdeR2(nombreArchivo);
       
       res.setHeader('Content-Type', 'text/plain; charset=utf-8');

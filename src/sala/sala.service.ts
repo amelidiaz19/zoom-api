@@ -417,7 +417,7 @@ export class SalaService {
 
 
    try {
-      // Subir reporte a Cloudflare R2
+
       await this.subirReporteAR2(nombreArchivo, contenidoReporte);
       agregarLinea(`📄 Reporte subido a R2: ${nombreArchivo}`);
       
@@ -455,7 +455,7 @@ export class SalaService {
     } catch (error) {
       console.error('Error subiendo reporte a R2:', error.message);
       
-      // Si falla R2, devolver el reporte en la respuesta
+
       return {
         message: `Eliminación rango ${fechaInicio} - ${fechaFin}: ${videosEliminados.length} duplicados eliminados`,
         rango: { fechaInicio, fechaFin },
@@ -547,7 +547,6 @@ export class SalaService {
         Key: key,
         Body: contenido,
         ContentType: 'text/plain; charset=utf-8',
-        // Hacer el archivo público para descarga directa
         ACL: 'public-read'
       }).promise();
       
@@ -558,7 +557,7 @@ export class SalaService {
     }
   }
 
-  // Método para obtener reporte desde R2
+
   async obtenerReporteDesdeR2(nombreArchivo: string): Promise<string> {
     const s3 = new S3({
       endpoint: process.env.R2_ENDPOINT_URL,
@@ -589,7 +588,6 @@ export class SalaService {
     }
   }
 
-  // Método para listar reportes desde R2
   async listarReportesDesdeR2() {
     const s3 = new S3({
       endpoint: process.env.R2_ENDPOINT_URL,
