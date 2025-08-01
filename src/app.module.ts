@@ -7,6 +7,7 @@ import { Tag } from './zoom/models/tag.model';
 import { ZoomMeeting } from './zoom/models/zoom-meeting.model';
 import { ZoomModule } from './zoom/zoom.module';
 import { SalaModule } from './sala/sala.module';
+import { R2UploadModule } from './upload/r2-upload.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -22,7 +23,8 @@ import { SalaModule } from './sala/sala.module';
       models: [Tag, ZoomMeeting, Recording],
     }),
     ZoomModule,
-    SalaModule
+    SalaModule,
+    R2UploadModule
   ],
 })
 export class AppModule {}

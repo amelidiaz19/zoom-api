@@ -56,4 +56,28 @@ export class R2UploaderService {
       throw new Error('Error al subir el video a R2');
     }
   }
+
+  async deleteVideoFromR2(
+    nombreArchivo: string,
+    folderPath?: string
+  ): Promise<void> {
+    const key = folderPath ? `${folderPath}/${nombreArchivo}` : nombreArchivo;
+
+    try {
+      console.log(`🗑️ Eliminando archivo de R2: ${key}`);
+      
+      await this.r2S3Client
+        .deleteObject({
+          Bucket: this.r2BucketName,
+          Key: key,
+        })
+        .promise();
+
+      console.log(`✅ Archivo eliminado exitosamente de R2: ${key}`);
+      
+    } catch (error) {
+      console.error(`❌ Error eliminando archivo de R2: ${key}`, error);
+      throw error;
+    }
+  }
 }
